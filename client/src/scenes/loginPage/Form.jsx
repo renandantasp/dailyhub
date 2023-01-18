@@ -57,10 +57,11 @@ const Form = () => {
         formData.append("picturePath", values.picture.name)
 
         const savedUserResponse = await fetch(
-            "https://dailyhub-server.vercel.app/auth/register",
+            "https://localhost:3001/auth/register",
             {
                 method: "POST",
                 body: formData,
+                headers:{"Access-Control-Allow-Origin":"*"}
             }
         )
         const savedUser = await savedUserResponse.json()
@@ -73,10 +74,10 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "https://dailyhub-server.vercel.app/auth/login",
+            "https://localhost:3001/auth/login",
             {
                 method: "POST",
-                headers:{"Content-Type": "application/json"},
+                headers:{"Content-Type": "application/json", "Access-Control-Allow-Origin":"*"},
                 body: JSON.stringify(values),
             }
         )

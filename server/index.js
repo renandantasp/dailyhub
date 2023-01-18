@@ -14,6 +14,9 @@ import userRoutes from './routes/users.js'
 import { register } from "./controllers/auth.js"
 import { createPost } from "./controllers/posts.js"
 import { verifyToken } from "./middleware/auth.js"
+import https from "https";
+import fs from 'fs'
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -51,6 +54,14 @@ app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
 
+var options = {
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+    passphrase: 'pass'
+  };
+
+const server = https.createServer(options, app);
+
 /* MONGOOSE SETUP */
 
 const PORT = process.env.PORT || 6001
@@ -58,5 +69,5 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    app.listen(PORT, () => console.log(`Server port: ${PORT}`))
+    server.listen(PORT, () => console.log(`Server port: ${PORT}`))
 }).catch((error) => console.log(`${error} did not connect`))
