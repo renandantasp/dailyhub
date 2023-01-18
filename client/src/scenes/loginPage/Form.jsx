@@ -57,7 +57,7 @@ const Form = () => {
         formData.append("picturePath", values.picture.name)
 
         const savedUserResponse = await fetch(
-            "https://localhost:3001/auth/register",
+            "https://dailyhub-server.vercel.app/auth/register",
             {
                 method: "POST",
                 body: formData,
@@ -73,7 +73,7 @@ const Form = () => {
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(
-            "https://localhost:3001/auth/login",
+            "https://dailyhub-server.vercel.app/auth/login",
             {
                 method: "POST",
                 headers:{"Content-Type": "application/json"},
