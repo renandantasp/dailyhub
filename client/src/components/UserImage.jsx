@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 
+
 const UserImage = ({image, size="60px"}) => {
     
     const user = useSelector((state) => state.user)
@@ -11,7 +12,7 @@ const UserImage = ({image, size="60px"}) => {
             width={size}
             height={size}
             alt="user"
-            src={`http://localhost:5001/assets/${user.picturePath}`} />
+            src={`${process.env.REACT_APP_URL}assets/${user.picturePath}`}/>
         </Box>
     )
 }
