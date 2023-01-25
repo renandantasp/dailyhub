@@ -54,13 +54,12 @@ app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
 
-var options = {
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('cert.pem'),
-    passphrase: 'pass'
-  };
 
-const server = https.createServer(options, app);
+// var options = {
+//     key: fs.readFileSync('certificates/code.key'),
+//     cert: fs.readFileSync('certificates/code.crt'),
+//   };
+
 
 /* MONGOOSE SETUP */
 
@@ -69,5 +68,6 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    server.listen(PORT, () => console.log(`Server port: ${PORT}`))
+    app.listen(PORT, () => console.log(`Server port: ${PORT}`))
 }).catch((error) => console.log(`${error} did not connect`))
+
