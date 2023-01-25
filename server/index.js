@@ -14,8 +14,6 @@ import userRoutes from './routes/users.js'
 import { register } from "./controllers/auth.js"
 import { createPost } from "./controllers/posts.js"
 import { verifyToken } from "./middleware/auth.js"
-import https from "https";
-import fs from 'fs'
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -53,12 +51,6 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost)
 app.use("/auth", authRoutes)
 app.use("/users", userRoutes)
 app.use("/posts", postRoutes)
-
-
-// var options = {
-//     key: fs.readFileSync('certificates/code.key'),
-//     cert: fs.readFileSync('certificates/code.crt'),
-//   };
 
 
 /* MONGOOSE SETUP */
