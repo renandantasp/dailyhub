@@ -32,7 +32,7 @@ const PostsWidget = ({ userId, isProfile = false}) => {
         }else {
             getPosts()
         }
-    }, []) // eslin-disable-line react-hooks/exhaustive-depths
+    }, []) // eslin-disable-next-line react-hooks/exhaustive-depths
 
     return (
         <>
