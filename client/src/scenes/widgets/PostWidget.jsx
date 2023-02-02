@@ -21,7 +21,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 
 const PostWidget = ({
-    key,
     postId,
     postUserId,
     name,
@@ -44,7 +43,7 @@ const PostWidget = ({
     const primary = palette.primary.main
 
     const patchLike = async () => {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}posts/${postId}/like`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}posts/${postId}`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
